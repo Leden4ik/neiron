@@ -1,0 +1,12 @@
+@use "config/all";
+@use "config/fonts";
+
+@use "main/style";
+@use "layout/header";
+@use "layout/footer";
+@use "module/button/button";
+@use "module/chat/chat";
+
+@use "module/sections/demo";
+@use "module/sections/sections";
+@use "module/sections/pricing";

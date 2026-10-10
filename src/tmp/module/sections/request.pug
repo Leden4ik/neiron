@@ -1,0 +1,30 @@
+section#request.nf__section.nf__section--soft.nf__request
+    .container.nf__request--inner
+        .nf__request--text
+            h2.nf__title Ваш ИИ-напарник в Системе Охрана труда Нейро
+            p.nf__lead Оставьте заявку — откроем бесплатный доступ. Задайте Нейрону Фомичу вопрос, который давно откладываете, и сравните с тем, что знаете сами.
+        img(src="img/fomich/form.png" alt="" width="350" height="525" loading="lazy" aria-hidden="true").nf__request--img
+        form.nf__form.js--form(action="#" method="post" novalidate)
+            .nf__form--body
+                label.nf__field
+                    span.nf__field--label Имя
+                    input.nf__field--input(type="text" name="name" placeholder="Анна Петрова" autocomplete="name" required)
+                    span.nf__field--error Укажите имя
+                label.nf__field
+                    span.nf__field--label Телефон
+                    input.nf__field--input.js--phone(type="tel" name="phone" placeholder="+7 (___) ___-__-__" autocomplete="tel" inputmode="tel" required)
+                    span.nf__field--error Укажите телефон полностью
+                label.nf__field
+                    span.nf__field--label E-mail
+                    input.nf__field--input(type="email" name="email" placeholder="name@company.ru" autocomplete="email" required)
+                    span.nf__field--error Проверьте e-mail
+                .nf__agree
+                    label.nf__check
+                        input(type="checkbox" name="agree" required)
+                        span.nf__check--box
+                        span.nf__check--text Соглашаюсь на обработку персональных данных и с политикой конфиденциальности
+                    a(href="#").nf__agree--link Политика конфиденциальности
+                button(type="submit").nf__btn.nf__btn--full Получить доступ
+            .nf__form--done(hidden)
+                b Заявка отправлена
+                p Мы свяжемся с вами в ближайшее время и откроем доступ к Нейрону Фомичу.

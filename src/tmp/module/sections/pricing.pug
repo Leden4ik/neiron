@@ -1,0 +1,63 @@
+mixin mark(yes)
+    if yes
+        +ico('check', 'nf__price--yes')
+        span.sr-only есть
+    else
+        +ico('cross', 'nf__price--no')
+        span.sr-only нет
+
+section#pricing.nf__section.nf__pricing
+    .container
+        .nf__head
+            h2.nf__title Выберите версию Системы Охрана труда
+            p.nf__lead Нейрон Фомич работает в новой Нейро версии
+        .nf__price
+            .nf__price--scroll
+              .nf__price--inner
+                table.nf__price--table
+                    thead
+                        tr.nf__price--headrow
+                            th(scope="col") Что входит
+                            each plan in plans
+                                th(scope="col" class=plan === 'Нейро' ? 'is-accent' : '')
+                                    if plan === 'Нейро'
+                                        span.nf__price--new Новинка
+                                        span.nf__price--plan= plan
+                                        span.nf__price--note Максимальная выгода
+                                    else
+                                        span.nf__price--plan= plan
+                    each g in pricing
+                        tbody
+                            tr.nf__price--group
+                                th(scope="rowgroup")= g.group
+                                td(colspan="4")
+                            each row in g.rows
+                                tr.nf__price--row
+                                    th(scope="row")
+                                        = row.label
+                                        if row.badge
+                                            span.nf__badge= row.badge
+                                    each flag, i in row.has.split('')
+                                        td(class=i === 2 ? 'is-accent' : '')
+                                            - const yes = flag === 'y'
+                                            +mark(yes)
+                    tfoot
+                        tr.nf__price--cost
+                            th(scope="row") Базовая стоимость годовой подписки
+                            td
+                                b 76 602 ₽
+                                a(href="#") Скачать КП
+                            td
+                                b Спец. цена
+                                a(href="#") Скачать КП
+                            td.is-accent
+                                b Спец. цена
+                                a(href="#request").nf__badge.nf__badge--link Получить спеццену
+                            td
+                                b 208 967 ₽
+                                a(href="#") Скачать КП
+        .nf__pricing--offer
+            p
+                b Вам больше всего подходит Система Охрана труда Нейро.
+                |  В этом месяце вы можете оформить подписку с индивидуальной скидкой.
+            +btn('Оформить со скидкой')

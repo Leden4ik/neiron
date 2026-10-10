@@ -1,0 +1,35 @@
+mixin ico(name, cls)
+    svg(class=`icon icon-${name}${cls ? ' ' + cls : ''}` aria-hidden="true" focusable="false")
+        use(href=`img/icons/sprite.svg#${name}`)
+
+mixin btn(text, href, cls)
+    a(href=href || '#request' class=`nf__btn${cls ? ' ' + cls : ''}`)&attributes(attributes)= text
+
+mixin logoNeuro(cls)
+    a(href="/" class=`nf__logo${cls ? ' ' + cls : ''}` aria-label="Система Охрана труда Нейро — на главную")
+        img(src="img/logo/logo-neuro.svg" alt="Система Охрана труда Нейро" width="227" height="55").nf__logo--img
+
+mixin avatar(size)
+    img(src="img/fomich/avatar.png" alt="" width=size height=size loading="lazy" aria-hidden="true" class=`nf__avatar nf__avatar--${size}`)
+
+//- вопрос пользователя (бирюзовый пузырь справа)
+mixin ask(cls)
+    .nf__msg.nf__msg--ask(class=cls)
+        block
+
+//- ответ Фомича: аватар + пузырь
+mixin reply(opts)
+    - opts = opts || {}
+    .nf__reply(class=opts.cls)
+        +avatar(opts.avatar || 35)
+        .nf__msg.nf__msg--reply(class=opts.wrong ? 'is-wrong' : '')
+            if opts.name
+                .nf__msg--name= opts.name
+            block
+            if opts.basis
+                .nf__msg--basis= opts.basis
+
+//- карточка-окно чата с бирюзовой рамкой
+mixin chatCard(cls)
+    .nf__card(class=cls)
+        block

@@ -1,0 +1,10 @@
+.vscode
+.idea
+dist
+node_modules
+*.zip
+*.php
+src/.temporary_cache
+src/_no
+_design
+package-lock.json

@@ -1,0 +1,380 @@
+@use "../../config/default";
+@use "../../config/initial-variables" as v;
+@use "../../config/responsiveness" as r;
+
+.nf__demo {
+  padding: 90px 0 70px;
+  @include r.mobile {
+    padding: 48px 0;
+  }
+  .nf__center {
+    margin-top: 45px;
+    @include r.mobile {
+      margin-top: 28px;
+    }
+  }
+}
+
+// Окно сервиса, состояние ставит js в data-state
+.nf__app {
+  display: flex;
+  height: 660px;
+  margin-top: 45px;
+  overflow: hidden;
+  border-radius: v.$radius;
+  background-color: v.$bg-soft;
+  box-shadow: -1px 2px 5px rgba(0, 0, 0, 0.1), -6px 8px 10px rgba(0, 0, 0, 0.09), -13px 18px 13px rgba(0, 0, 0, 0.05), -22px 32px 16px rgba(0, 0, 0, 0.01);
+  @include r.mobile {
+    height: 600px;
+    margin-top: 28px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  &--side {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex-shrink: 0;
+    width: 238px;
+    padding: 20px 15px;
+    background-color: v.$bg-side;
+    @include r.touch {
+      width: 210px;
+    }
+    @include r.mobile {
+      display: none;
+    }
+  }
+  &--logo {
+    display: block;
+    width: 171px;
+    height: 41px;
+  }
+  &--new {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 5px 7px;
+    border-radius: v.$radius-small;
+    font-size: 15px;
+    font-weight: v.$weight-bold;
+    line-height: 17px;
+    text-align: left;
+    color: v.$text;
+    cursor: pointer;
+    transition: background-color v.$speed-long v.$easing;
+    .icon {
+      color: v.$teal;
+    }
+    &:hover,
+    &:focus-visible {
+      background-color: rgba(v.$white, 0.6);
+    }
+  }
+  &--caption {
+    font-size: 12px;
+    line-height: 14px;
+    color: v.$muted;
+  }
+  &--history {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 0;
+    padding: 0;
+    list-style: none;
+    &-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 10px 7px;
+      border-radius: v.$radius-small;
+      font-size: 15px;
+      line-height: 17px;
+      .icon {
+        width: 10px;
+        height: 12px;
+      }
+      span {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      &.is-active {
+        background-color: v.$white;
+      }
+    }
+  }
+
+  &--main {
+    position: relative;
+    flex-grow: 1;
+    min-width: 0;
+  }
+
+  // экран приветствия
+  &--start {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    padding: 20px;
+    transition: opacity v.$speed-long v.$easing;
+    @include r.mobile {
+      padding: 16px;
+    }
+  }
+  &--hello {
+    font-size: 20px;
+    font-weight: v.$weight-bold;
+    line-height: 23px;
+    text-align: center;
+  }
+  &--input {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 692px;
+    max-width: 100%;
+    padding: 15px 20px;
+    border-radius: v.$radius;
+    background-color: v.$white;
+    @include r.mobile {
+      padding: 12px 14px;
+    }
+    &-bottom {
+      flex-shrink: 0;
+      width: auto;
+      gap: 10px;
+      margin: 0 20px 20px;
+      @include r.mobile {
+        margin: 0 12px 12px;
+      }
+    }
+  }
+  &--field {
+    position: relative;
+    min-height: 19px;
+    font-size: 15px;
+    line-height: 19px;
+  }
+  &--placeholder {
+    color: v.$muted;
+    line-height: 17px;
+  }
+  &--typed {
+    display: block;
+    &:empty {
+      display: none;
+    }
+    &.is-typing::after {
+      content: "";
+      display: inline-block;
+      width: 1px;
+      height: 16px;
+      margin-left: 1px;
+      vertical-align: -3px;
+      background-color: v.$text;
+      animation: nf-caret 0.8s steps(1) infinite;
+    }
+  }
+  &--tools {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  &--attach {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+    line-height: 17px;
+  }
+  &--send {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 7px 10px;
+    border-radius: v.$radius-small;
+    background-color: v.$teal;
+    color: v.$white;
+    font-size: 15px;
+    line-height: 17px;
+    transition-property: transform, background-color;
+    transition-duration: 150ms;
+    transition-timing-function: v.$easing;
+    .icon {
+      width: 9px;
+      height: 9px;
+    }
+    &.is-pressed {
+      transform: scale(0.94);
+      background-color: v.$teal-dark;
+    }
+    &.is-disabled {
+      background-color: v.$bg-side;
+      color: v.$muted;
+    }
+  }
+
+  // переписка
+  &--dialog {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity v.$speed-long v.$easing, visibility 0s linear v.$speed-long;
+  }
+  &--topic {
+    flex-shrink: 0;
+    padding: 20px;
+    border-bottom: 1px solid v.$border;
+    font-size: 15px;
+    font-weight: v.$weight-bold;
+    line-height: 17px;
+    @include r.mobile {
+      padding: 16px;
+    }
+  }
+  &--feed {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex-grow: 1;
+    min-height: 0;
+    padding: 10px 20px 20px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+    @include r.mobile {
+      gap: 14px;
+      padding: 12px;
+    }
+  }
+  &--ask {
+    align-self: flex-end;
+    flex-shrink: 0;
+    width: 758px;
+    max-width: 88%;
+    padding: 20px;
+    border-radius: v.$radius v.$radius 0 v.$radius;
+    background-color: v.$white;
+    font-size: 15px;
+    line-height: 19px;
+    @include r.mobile {
+      max-width: 92%;
+      padding: 14px;
+      font-size: 14px;
+      line-height: 18px;
+    }
+  }
+  &--answer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex-shrink: 0;
+    padding: 20px;
+    border-radius: v.$radius v.$radius v.$radius 0;
+    background-color: v.$white;
+    font-size: 15px;
+    line-height: 18px;
+    @include r.mobile {
+      padding: 14px;
+      font-size: 14px;
+      line-height: 17px;
+    }
+  }
+  &--who {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    b {
+      font-size: 15px;
+      line-height: 17px;
+    }
+  }
+  &--loading {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    p:first-child::after {
+      content: "";
+      animation: nf-dots 1.2s steps(4) infinite;
+    }
+  }
+  &--muted {
+    color: v.$muted;
+  }
+  &--result {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    hr {
+      height: 0;
+      margin: 0;
+      border: 0;
+      border-top: 1px solid v.$border;
+    }
+  }
+
+  &[data-state="loading"],
+  &[data-state="answer"] {
+    .nf__app--start {
+      visibility: hidden;
+      opacity: 0;
+    }
+    .nf__app--dialog {
+      visibility: visible;
+      opacity: 1;
+      transition-delay: 0s;
+    }
+  }
+  &[data-state="typing"] .nf__app--placeholder {
+    display: none;
+  }
+  &[data-state="answer"] {
+    .nf__app--loading {
+      display: none;
+    }
+    .nf__app--result {
+      display: flex;
+      animation: nf-appear 0.5s v.$easing both;
+    }
+  }
+}
+
+@keyframes nf-caret {
+  50% {
+    opacity: 0;
+  }
+}
+@keyframes nf-dots {
+  0% {
+    content: "";
+  }
+  25% {
+    content: ".";
+  }
+  50% {
+    content: "..";
+  }
+  75% {
+    content: "...";
+  }
+}
+@keyframes nf-appear {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}

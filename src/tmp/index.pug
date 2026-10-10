@@ -1,0 +1,28 @@
+extends layout/default
+include _config/helper
+block variables
+  include _config/data
+  -  const pageTitle = 'Нейрон Фомич — ИИ-напарник в Системе Охрана труда'
+  -  const pageDescription = 'Нейрон Фомич отвечает по нормативной базе и рекомендациям экспертов Системы Охрана труда: ссылки на нормы, проверка документов, расчеты и готовые приказы.'
+  -  const pageClass = 'page-neiron'
+
+block header
+    include module/header/header
+block footer
+    include module/footer/footer
+block scripts
+    include module/js
+    block page_scripts
+
+block content
+    main
+        include module/sections/hero
+        include module/sections/demo
+        include module/sections/base
+        include module/sections/experts
+        include module/sections/verified
+        include module/sections/topics
+        include module/sections/examples
+        include module/sections/shift
+        include module/sections/pricing
+        include module/sections/request

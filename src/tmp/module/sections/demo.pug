@@ -1,0 +1,67 @@
+section#demo.nf__demo
+    .container
+        .nf__head.nf__head--center
+            h2.nf__title Разберу даже сложные вопросы
+            p.nf__lead Реальный вопрос специалиста по охране труда — и ответ Нейрона Фомича со ссылками на нормы и порядком действий.
+
+        .nf__app.js--demo(data-state="empty")
+            aside.nf__app--side
+                img(src="img/logo/logo-neuro.svg" alt="Система Охрана труда Нейро" width="171" height="41" loading="lazy").nf__app--logo
+                button(type="button").nf__app--new.js--demo-restart
+                    +ico('pen')
+                    span Новый вопрос
+                .nf__app--caption Сегодня
+                ul.nf__app--history
+                    each item, i in demo.history
+                        li.nf__app--history-item(class=i === 0 ? 'is-active' : '')
+                            +ico('file')
+                            span= item
+
+            .nf__app--main
+                //- приветствие с полем ввода
+                .nf__app--start
+                    .nf__app--hello Здравствуйте, Анна!
+                    .nf__app--input
+                        .nf__app--field
+                            span.nf__app--placeholder Задайте уточняющий вопрос
+                            span.nf__app--typed.js--demo-typed(data-text=demo.question)
+                        .nf__app--tools
+                            span.nf__app--attach
+                                +ico('clip')
+                                | Прикрепить файл
+                            span.nf__app--send.js--demo-send
+                                | Отправить
+                                +ico('send')
+
+                //- переписка
+                .nf__app--dialog
+                    .nf__app--topic= demo.title
+                    .nf__app--feed
+                        .nf__app--ask= demo.question
+                        .nf__app--answer
+                            .nf__app--who
+                                +avatar(35)
+                                b Нейрон Фомич
+                            .nf__app--loading
+                                p Собираю информацию из источников Актион Охрана труда
+                                p.nf__app--muted Это займет не больше 3 минут
+                            .nf__app--result
+                                p
+                                    b= demo.lead
+                                    = demo.leadRest
+                                hr
+                                each p in demo.answer
+                                    p= p
+                    .nf__app--input.nf__app--input-bottom
+                        .nf__app--field
+                            span.nf__app--placeholder Задайте уточняющий вопрос
+                        .nf__app--tools
+                            span.nf__app--attach
+                                +ico('clip')
+                                | Прикрепить файл
+                            span.nf__app--send.is-disabled
+                                | Отправить
+                                +ico('send')
+
+        .nf__center
+            +btn('Разобрать мой сложный вопрос')

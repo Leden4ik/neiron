@@ -1,0 +1,72 @@
+@use "../config/default";
+@use "../config/initial-variables" as v;
+@use "../config/responsiveness" as r;
+
+.nf__footer {
+  padding: 30px 0;
+  background-color: v.$footer;
+  color: v.$white;
+  font-size: 15px;
+  line-height: 18px;
+  &--inner {
+    display: flex;
+    align-items: flex-end;
+    gap: 30px 70px;
+    @include r.touch {
+      flex-wrap: wrap;
+    }
+    @include r.mobile {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 24px;
+    }
+  }
+  &--col {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    &:first-child {
+      width: 496px;
+      max-width: 100%;
+    }
+  }
+  &--links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px 26px;
+    a {
+      color: inherit;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      transition: opacity v.$speed-long v.$easing;
+      &:hover,
+      &:focus-visible {
+        opacity: 0.75;
+      }
+    }
+  }
+  &--caption {
+    font-weight: v.$weight-semibold;
+  }
+  &--phone {
+    font-size: 23px;
+    font-weight: v.$weight-semibold;
+    line-height: 25px;
+    color: inherit;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  &--logo {
+    display: block;
+    margin-left: auto;
+    margin-bottom: 0;
+    img {
+      display: block;
+      width: 176px;
+      height: 14px;
+    }
+    @include r.mobile {
+      margin-left: 0;
+    }
+  }
+}

@@ -1,0 +1,12 @@
+section#experts.nf__section.nf__section--soft.nf__experts
+    .container.nf__row
+        .nf__col.nf__experts--left
+            h2.nf__title Регулярно обучаюсь у лучших экспертов и внимательных проверяющих
+            p.nf__lead Я работал с рекомендациями представителей Роструда, ГИТ и практиками с опытом в охране труда и промбезопасности от 20 лет. Они знают, на что инспектор посмотрит при выездной проверке — и научили этому меня.
+            +btn('Спросить, на что посмотрит инспектор')
+        ul.nf__experts--list
+            each e, i in experts
+                li.nf__expert
+                    img(src=`img/experts/expert-${i + 1}.png` alt=e.name width="92" height="90" loading="lazy").nf__expert--photo
+                    .nf__expert--name= e.name
+                    p.nf__expert--role= e.role

@@ -1,0 +1,88 @@
+@use "../../config/default";
+@use "../../config/initial-variables" as v;
+@use "../../config/responsiveness" as r;
+
+.nf__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 61px;
+  padding: 17px 35px;
+  border-radius: v.$radius;
+  background-color: v.$red;
+  color: v.$white;
+  font-size: 22px;
+  font-weight: v.$weight-semibold;
+  line-height: 27px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  @include default.unselectable;
+  transition-property: background-color, box-shadow, transform;
+  transition-duration: v.$speed-long;
+  transition-timing-function: v.$easing;
+  &:hover,
+  &:focus-visible {
+    background-color: v.$red-dark;
+    box-shadow: 0 8px 20px rgba(v.$red, 0.3);
+  }
+  &:active {
+    transform: translateY(1px);
+  }
+  &--full {
+    width: 100%;
+    min-height: 57px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+  @include r.mobile {
+    width: 100%;
+    min-height: 54px;
+    padding: 14px 20px;
+    font-size: 18px;
+    line-height: 22px;
+  }
+}
+
+// Маленькая красная плашка: "Новинка", "Получить спеццену"
+.nf__badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 10px;
+  border-radius: v.$radius;
+  background-color: v.$red;
+  color: v.$white;
+  font-size: 16px;
+  font-weight: v.$weight-semibold;
+  line-height: 16px;
+  white-space: nowrap;
+  &--link {
+    text-decoration: none;
+    transition: background-color v.$speed-long v.$easing;
+    &:hover,
+    &:focus-visible {
+      background-color: v.$red-dark;
+    }
+  }
+}
+
+// Обводная кнопка внутри чата: "Скачать .docx"
+.nf__chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 10px;
+  border: 1px solid v.$teal;
+  border-radius: v.$radius;
+  color: v.$text;
+  font-size: 14px;
+  line-height: 16px;
+  text-decoration: none;
+  transition-property: background-color, color;
+  transition-duration: v.$speed-long;
+  transition-timing-function: v.$easing;
+  &:hover,
+  &:focus-visible {
+    background-color: v.$teal;
+    color: v.$white;
+  }
+}

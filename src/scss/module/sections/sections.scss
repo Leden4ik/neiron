@@ -1,0 +1,575 @@
+@use "../../config/default";
+@use "../../config/initial-variables" as v;
+@use "../../config/responsiveness" as r;
+
+// База Системы
+.nf__base {
+  &--left {
+    flex-shrink: 0;
+    width: 572px;
+    @include r.until-widescreen {
+      width: 50%;
+      flex-shrink: 1;
+    }
+    @include r.touch {
+      width: auto;
+    }
+  }
+  &--right {
+    width: 501px;
+    @include r.touch {
+      width: auto;
+    }
+  }
+}
+.nf__stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+  width: 100%;
+  @include r.mobile {
+    gap: 12px;
+  }
+  &--item {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: v.$radius;
+    background-color: v.$bg-soft;
+    @include r.mobile {
+      padding: 16px 14px;
+    }
+  }
+  &--value {
+    font-size: 60px;
+    font-weight: v.$weight-bold;
+    line-height: 60px;
+    color: v.$teal;
+    white-space: nowrap;
+    @include r.until-widescreen {
+      font-size: 50px;
+      line-height: 54px;
+    }
+    @include r.mobile {
+      font-size: 30px;
+      line-height: 34px;
+    }
+  }
+  &--text {
+    font-size: 18px;
+    line-height: 21px;
+    @include r.mobile {
+      margin-top: 4px;
+      font-size: 14px;
+      line-height: 17px;
+    }
+  }
+}
+.nf__card--base {
+  width: 100%;
+  .nf__msg--ask {
+    width: 370px;
+  }
+}
+
+// Эксперты
+.nf__experts {
+  &--left {
+    width: 468px;
+    flex-shrink: 0;
+    @include r.until-widescreen {
+      width: 40%;
+      flex-shrink: 1;
+    }
+    @include r.touch {
+      width: auto;
+    }
+  }
+  &--list {
+    display: grid;
+    grid-template-columns: repeat(3, 192px);
+    gap: 15px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    @include r.until-widescreen {
+      grid-template-columns: repeat(3, 1fr);
+      flex-grow: 1;
+    }
+    @include r.mobile {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+  }
+}
+.nf__expert {
+  display: flex;
+  flex-direction: column;
+  min-height: 223px;
+  padding: 15px;
+  border: 1px solid v.$teal;
+  border-radius: v.$radius;
+  background-color: v.$white;
+  @include r.mobile {
+    min-height: 0;
+    padding: 12px;
+  }
+  &--photo {
+    display: block;
+    width: 92px;
+    height: 90px;
+    margin: 0 auto 15px;
+    border-radius: 50%;
+    background-color: v.$photo-bg;
+    object-fit: cover;
+    @include r.mobile {
+      width: 72px;
+      height: 70px;
+      margin-bottom: 12px;
+    }
+  }
+  &--name {
+    margin-bottom: 5px;
+    font-size: 16px;
+    font-weight: v.$weight-bold;
+    line-height: 18px;
+    @include r.mobile {
+      font-size: 15px;
+      line-height: 17px;
+    }
+  }
+  &--role {
+    font-size: 13px;
+    line-height: 15px;
+    color: v.$text-soft;
+  }
+}
+
+// Проверенные ответы
+.nf__verified {
+  &--left {
+    width: 504px;
+    flex-shrink: 0;
+    @include r.until-widescreen {
+      width: 45%;
+      flex-shrink: 1;
+    }
+    @include r.touch {
+      width: auto;
+    }
+  }
+  &--right {
+    flex-grow: 1;
+    max-width: 579px;
+    gap: 15px;
+    align-items: stretch;
+    @include r.touch {
+      max-width: none;
+    }
+  }
+  &--wrong {
+    flex-shrink: 0;
+    color: v.$red;
+    .icon {
+      width: 50px;
+      height: 50px;
+    }
+  }
+}
+
+// Темы
+.nf__topics {
+  .nf__row {
+    align-items: flex-start;
+    @include r.touch {
+      align-items: stretch;
+    }
+  }
+  &--left {
+    width: 600px;
+    flex-shrink: 0;
+    @include r.until-widescreen {
+      width: 52%;
+      flex-shrink: 1;
+    }
+    @include r.touch {
+      width: auto;
+    }
+  }
+  &--panels {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+  &--panel {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    animation: nf-appear 0.35s v.$easing both;
+    .nf__msg--ask {
+      width: 415px;
+    }
+    &[hidden] {
+      display: none;
+    }
+  }
+}
+.nf__card--topics {
+  align-self: flex-start;
+  width: 483px;
+  min-height: 470px;
+  flex-shrink: 0;
+  @include r.until-widescreen {
+    flex-shrink: 1;
+  }
+  @include r.touch {
+    align-self: stretch;
+    width: auto;
+    min-height: 0;
+  }
+}
+.nf__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  max-width: 562px;
+  @include r.mobile {
+    gap: 8px;
+  }
+}
+.nf__tag {
+  padding: 6px 10px;
+  border: 1px solid v.$teal;
+  border-radius: v.$radius;
+  color: v.$teal;
+  font-size: 18px;
+  font-weight: v.$weight-semibold;
+  line-height: 21px;
+  cursor: pointer;
+  transition-property: background-color, color;
+  transition-duration: v.$speed-long;
+  transition-timing-function: v.$easing;
+  &:hover,
+  &:focus-visible {
+    background-color: rgba(v.$teal, 0.08);
+  }
+  &.is-active {
+    background-color: v.$teal;
+    color: v.$bg-soft;
+  }
+  @include r.mobile {
+    font-size: 15px;
+    line-height: 18px;
+  }
+}
+
+// Примеры
+.nf__examples--list {
+  display: flex;
+  flex-direction: column;
+  gap: 85px;
+  @include r.mobile {
+    gap: 56px;
+  }
+}
+.nf__case {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+  @include r.until-widescreen {
+    gap: 40px;
+  }
+  @include r.touch {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 32px;
+  }
+  &--reverse {
+    flex-direction: row-reverse;
+    @include r.touch {
+      flex-direction: column;
+    }
+  }
+  &--text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 25px;
+    width: 485px;
+    flex-shrink: 0;
+    @include r.until-widescreen {
+      width: 44%;
+      flex-shrink: 1;
+    }
+    @include r.touch {
+      width: auto;
+    }
+    @include r.mobile {
+      gap: 20px;
+    }
+  }
+  &--chat {
+    width: 593px;
+    flex-shrink: 1;
+    @include r.touch {
+      width: auto;
+    }
+  }
+}
+.nf__msg--file {
+  font-size: 16px;
+}
+
+// Смена в цифрах
+.nf__shift {
+  &--list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    margin-top: 45px;
+    @include r.mobile {
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-top: 28px;
+    }
+  }
+  &--item {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: v.$radius;
+    background-color: v.$white;
+  }
+  &--before {
+    font-size: 18px;
+    line-height: 21px;
+  }
+  &--value {
+    font-size: 60px;
+    font-weight: v.$weight-bold;
+    line-height: 60px;
+    color: v.$teal;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+    @include r.touch {
+      font-size: 46px;
+      line-height: 50px;
+    }
+  }
+  &--after {
+    font-size: 22px;
+    line-height: 25px;
+    @include r.mobile {
+      font-size: 18px;
+    }
+  }
+}
+
+// Заявка
+.nf__request {
+  &--inner {
+    display: flex;
+    gap: 35px;
+    @include r.touch {
+      flex-wrap: wrap;
+      gap: 32px;
+    }
+  }
+  &--text {
+    display: flex;
+    flex-direction: column;
+    gap: 45px;
+    width: 278px;
+    flex-shrink: 0;
+    @include r.touch {
+      width: 100%;
+      gap: 20px;
+    }
+  }
+  &--img {
+    display: block;
+    width: 350px;
+    height: 525px;
+    flex-shrink: 0;
+    object-fit: contain;
+    object-position: bottom center;
+    @include r.until-widescreen {
+      width: 260px;
+      height: auto;
+      align-self: flex-end;
+    }
+    @include r.touch {
+      display: none;
+    }
+  }
+}
+.nf__form {
+  flex-grow: 1;
+  max-width: 430px;
+  margin-left: auto;
+  padding: 30px;
+  border-radius: v.$radius;
+  background-color: v.$white;
+  @include r.touch {
+    max-width: none;
+    margin-left: 0;
+  }
+  @include r.mobile {
+    padding: 20px 16px;
+  }
+  &--body {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    @include r.mobile {
+      gap: 20px;
+    }
+  }
+  &--done {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    min-height: 300px;
+    text-align: center;
+    animation: nf-appear 0.4s v.$easing both;
+    b {
+      font-size: 26px;
+      line-height: 30px;
+      color: v.$teal;
+    }
+    p {
+      font-size: 18px;
+      line-height: 22px;
+      color: v.$text-soft;
+    }
+    &[hidden] {
+      display: none;
+    }
+  }
+}
+.nf__field {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  &--label {
+    font-size: 18px;
+    font-weight: v.$weight-bold;
+    line-height: 20px;
+    color: v.$text-soft;
+  }
+  &--input {
+    width: 100%;
+    height: 56px;
+    padding: 17px 20px;
+    border: 1px solid v.$border-input;
+    border-radius: v.$radius;
+    background-color: v.$white;
+    font-size: 18px;
+    line-height: 20px;
+    color: v.$text-soft;
+    transition: border-color v.$speed-long v.$easing, box-shadow v.$speed-long v.$easing;
+    @include default.placeholder {
+      color: v.$text-soft;
+      opacity: 0.75;
+    }
+    &:focus {
+      outline: none;
+      border-color: v.$teal;
+      box-shadow: 0 0 0 3px rgba(v.$teal, 0.15);
+    }
+  }
+  // ошибка висит в зазоре под полем и не сдвигает форму
+  &--error {
+    position: absolute;
+    left: 20px;
+    top: calc(100% + 4px);
+    font-size: 13px;
+    line-height: 15px;
+    color: v.$red;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateY(-3px);
+    transition: opacity v.$speed-long v.$easing, transform v.$speed-long v.$easing;
+    pointer-events: none;
+  }
+  &.is-invalid {
+    .nf__field--input {
+      border-color: v.$red;
+    }
+    .nf__field--error {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+.nf__agree {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  &--link {
+    align-self: flex-start;
+    font-size: 14px;
+    line-height: 14px;
+    color: v.$teal;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    &:hover,
+    &:focus-visible {
+      text-decoration: none;
+    }
+  }
+}
+.nf__check {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  cursor: pointer;
+  input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+  }
+  &--box {
+    position: relative;
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    border: 1px solid v.$border-input;
+    border-radius: 3px;
+    transition: background-color v.$speed-long v.$easing, border-color v.$speed-long v.$easing;
+    &::after {
+      content: "";
+      position: absolute;
+      left: 7px;
+      top: 3px;
+      width: 6px;
+      height: 11px;
+      border: solid v.$white;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg) scale(0);
+      transition: transform 150ms v.$easing;
+    }
+  }
+  input:checked + &--box {
+    border-color: v.$teal;
+    background-color: v.$teal;
+    &::after {
+      transform: rotate(45deg) scale(1);
+    }
+  }
+  input:focus-visible + &--box {
+    box-shadow: 0 0 0 3px rgba(v.$teal, 0.25);
+  }
+  &--text {
+    font-size: 12px;
+    line-height: 13px;
+    color: v.$text-soft;
+  }
+  &.is-invalid &--box {
+    border-color: v.$red;
+  }
+}

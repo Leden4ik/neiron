@@ -1,0 +1,23 @@
+section.nf__hero
+    .container.nf__hero--inner
+        .nf__hero--content
+            +logoNeuro('nf__hero--logo')
+            .nf__hero--text
+                h1.nf__hero--title
+                    span.nf__hero--name Нейрон Фомич.
+                    |  Ваш ИИ-напарник
+                    br.nf__hero--br
+                    |  со стажем в охране труда
+                p.nf__lead Отвечаю по нормативной базе и рекомендациям экспертов Системы Охрана труда, а не по случайным сайтам из интернета
+            .nf__hero--actions
+                +btn('Задать вопрос Фомичу')
+                a(href="#demo").nf__hero--link Посмотреть, как я работаю
+        .nf__hero--visual
+            img(src="img/fomich/hero.png" alt="Нейрон Фомич — ИИ-напарник специалиста по охране труда" width="393" height="541" fetchpriority="high").nf__hero--img
+            img(src="img/fomich/signature.svg" alt="Выручу в любой рабочей ситуации" width="167" height="71").nf__hero--sign
+            each q, i in heroQuestions
+                .nf__hero--bubble(class=`nf__hero--bubble-${i + 1}`)= q
+nav.nf__nav.js--nav(aria-label="Разделы страницы")
+    .container.nf__nav--inner
+        each item in nav
+            a(href=item.href).nf__nav--link= item.label

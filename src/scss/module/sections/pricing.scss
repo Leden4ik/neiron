@@ -1,0 +1,265 @@
+@use "../../config/default";
+@use "../../config/initial-variables" as v;
+@use "../../config/responsiveness" as r;
+
+.nf__pricing {
+  &--offer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    margin-top: 25px;
+    @include r.touch {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    p {
+      max-width: 805px;
+      font-size: 22px;
+      line-height: 25px;
+      color: v.$text-soft;
+      @include r.mobile {
+        font-size: 18px;
+        line-height: 22px;
+      }
+    }
+    .nf__btn {
+      flex-shrink: 0;
+    }
+  }
+}
+
+// Таблица тарифов, от ширин колонок считается рамка "Нейро"
+.nf__price {
+  --col: 157px;
+  --last: 177px;
+  --label: 220px;
+  margin-top: 25px;
+  padding: 30px;
+  border-radius: v.$radius;
+  background-color: v.$bg-soft;
+  @include r.touch {
+    --col: 130px;
+    --last: 146px;
+    padding: 24px 0 24px 16px;
+  }
+  @include r.mobile {
+    --col: 104px;
+    --last: 116px;
+    --label: 180px;
+    margin-left: -(v.$gutter-mobile);
+    margin-right: -(v.$gutter-mobile);
+    border-radius: 0;
+    padding: 20px 0 20px 0;
+  }
+  &--scroll {
+    overflow-x: auto;
+    @include r.touch {
+      padding-right: 16px;
+    }
+  }
+  &--inner {
+    position: relative;
+    min-width: calc(var(--label) + var(--col) * 3 + var(--last));
+    padding: 19px 0 13px;
+    // рамка вокруг колонки "Нейро"
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: calc(var(--last) - 17px);
+      width: calc(var(--col) + 30px);
+      border: 1px solid v.$teal;
+      border-radius: v.$radius;
+      pointer-events: none;
+      @include r.touch {
+        right: calc(var(--last) - 12px);
+        width: calc(var(--col) + 20px);
+      }
+    }
+  }
+  &--table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: separate;
+    border-spacing: 0;
+    color: v.$text-soft;
+    th,
+    td {
+      font-weight: v.$weight-normal;
+      text-align: center;
+      vertical-align: middle;
+    }
+    th:first-child {
+      position: sticky;
+      left: 0;
+      z-index: 1;
+      padding-left: 20px;
+      text-align: left;
+      background-color: inherit;
+      @include r.mobile {
+        padding-left: 16px;
+      }
+    }
+    th:not(:first-child),
+    td {
+      width: var(--col);
+    }
+    tr > :last-child:not(:first-child) {
+      width: var(--last);
+      padding-right: 20px;
+    }
+  }
+  &--headrow {
+    background-color: v.$bg-soft;
+    th {
+      height: 46px;
+      font-size: 24px;
+      line-height: 24px;
+      @include r.mobile {
+        font-size: 18px;
+        line-height: 20px;
+      }
+    }
+    th.is-accent {
+      padding-bottom: 6px;
+    }
+  }
+  &--new {
+    display: block;
+    width: 85px;
+    margin: -12px auto 5px;
+    padding: 3px 0;
+    border: 1px solid v.$teal;
+    border-radius: 50px;
+    color: v.$teal;
+    font-size: 14px;
+    line-height: 14px;
+    @include r.mobile {
+      width: 76px;
+      font-size: 12px;
+    }
+  }
+  &--plan {
+    display: block;
+  }
+  &--note {
+    display: block;
+    margin-top: 5px;
+    font-size: 14px;
+    line-height: 14px;
+    @include r.mobile {
+      font-size: 11px;
+      line-height: 12px;
+    }
+  }
+  &--group {
+    background-color: v.$bg-soft;
+    th {
+      height: 44px;
+      padding-top: 12px;
+      padding-bottom: 12px;
+      font-size: 18px;
+      font-weight: v.$weight-bold !important;
+      line-height: 20px;
+      text-align: left;
+      @include r.mobile {
+        font-size: 16px;
+      }
+    }
+  }
+  &--row {
+    background-color: v.$bg-soft;
+    &:nth-child(even) {
+      background-color: v.$white;
+    }
+    th,
+    td {
+      height: 32px;
+      padding-top: 6px;
+      padding-bottom: 6px;
+      font-size: 18px;
+      line-height: 20px;
+      @include r.mobile {
+        font-size: 14px;
+        line-height: 17px;
+      }
+    }
+    .nf__badge {
+      margin: -7px 0 -7px 14px;
+      vertical-align: middle;
+      @include r.touch {
+        display: table;
+        margin: 4px 0 0;
+        padding: 4px 8px;
+        font-size: 13px;
+        line-height: 13px;
+      }
+    }
+    .icon {
+      margin: 0 auto;
+    }
+  }
+  &--yes {
+    width: 20px !important;
+    height: 16px !important;
+  }
+  &--no {
+    width: 17px !important;
+    height: 17px !important;
+  }
+  &--cost {
+    background-color: v.$white;
+    th,
+    td {
+      height: 79px;
+      padding-top: 12px;
+      padding-bottom: 12px;
+    }
+    th {
+      font-size: 18px;
+      font-weight: v.$weight-bold !important;
+      line-height: 20px;
+      @include r.mobile {
+        font-size: 15px;
+        line-height: 18px;
+      }
+    }
+    td {
+      b {
+        display: block;
+        margin-bottom: 5px;
+        font-size: 18px;
+        line-height: 20px;
+        white-space: nowrap;
+        @include r.mobile {
+          font-size: 15px;
+        }
+      }
+      a:not(.nf__badge) {
+        font-size: 16px;
+        font-weight: v.$weight-bold;
+        line-height: 20px;
+        color: v.$teal;
+        text-decoration: underline;
+        text-underline-offset: 2px;
+        &:hover,
+        &:focus-visible {
+          text-decoration: none;
+        }
+        @include r.mobile {
+          font-size: 14px;
+        }
+      }
+      .nf__badge {
+        margin: 0 -5px;
+        @include r.touch {
+          padding: 7px 6px;
+          font-size: 13px;
+          white-space: normal;
+        }
+      }
+    }
+  }
+}

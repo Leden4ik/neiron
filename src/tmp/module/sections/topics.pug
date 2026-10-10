@@ -1,0 +1,27 @@
+mixin topicPanel(t, id, hidden)
+    .nf__topics--panel(id=id data-label=t.label hidden=hidden)
+        +ask
+            | #{t.question}
+        +reply({basis: t.basis})
+            each p in t.answer
+                p= p
+
+section.nf__section.nf__section--soft.nf__topics.js--topics
+    .container.nf__row
+        .nf__col.nf__topics--left
+            h2.nf__title Знаю все участки вашей работы
+            p.nf__lead От вводного инструктажа до расследования несчастного случая. Нажмите на тему — покажу, как отвечаю.
+            .nf__tags(role="group" aria-label="Темы")
+                each t, i in topics
+                    button(type="button" aria-pressed="false" aria-controls=`topic-${i + 1}` data-topic=`topic-${i + 1}`).nf__tag= t.label
+            +btn('Задать вопрос по своей теме')
+        +chatCard('nf__card--topics')
+            .nf__card--head
+                +avatar(50)
+                div
+                    b Нейрон Фомич
+                    span.js--topic-label= topicDefault.label
+            .nf__topics--panels(aria-live="polite")
+                +topicPanel(topicDefault, 'topic-0', false)
+                each t, i in topics
+                    +topicPanel(t, `topic-${i + 1}`, true)

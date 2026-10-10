@@ -1,0 +1,9 @@
+section.nf__section.nf__section--soft.nf__shift
+    .container
+        h2.nf__title Смена Нейрона Фомича в цифрах
+        .nf__shift--list
+            each s in shiftStats
+                .nf__shift--item
+                    span.nf__shift--before= s.before
+                    span.nf__shift--value.js--counter(data-value=s.value)= s.value.toLocaleString('ru-RU')
+                    span.nf__shift--after= s.after
